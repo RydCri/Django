@@ -24,3 +24,10 @@ def details(request, id):
         'mymember': mymember,
     }
     return HttpResponse(template.render(context, request))
+
+def testing(request):
+    template = loader.get_template('template.html')
+    context = {
+        'tester': ['test1', 'test2', 'test3'],
+    }
+    return HttpResponse(template.render(context, request))

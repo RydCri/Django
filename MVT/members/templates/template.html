@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+{% block title%}
+Testing Page
+{% endblock %}
+
+{% block content%}
+<h1>This page retrieves the tester variable</h1>
+<ol>
+{% for x in tester %}
+<li>{{ x }}</li>
+{% endfor %}
+</ol>
+
+
+{% endblock %}
