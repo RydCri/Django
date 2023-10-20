@@ -26,8 +26,9 @@ def details(request, id):
     return HttpResponse(template.render(context, request))
 
 def testing(request):
+    mymembers = Member.objects.all().values()
     template = loader.get_template('template.html')
     context = {
-        'tester': ['test1', 'test2', 'test3'],
+        'mymembers': mymembers,
     }
     return HttpResponse(template.render(context, request))
