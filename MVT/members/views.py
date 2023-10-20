@@ -17,6 +17,7 @@ def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
 
+
 def details(request, id):
     mymember = Member.objects.get(id=id)
     template = loader.get_template('details.html')
@@ -24,6 +25,7 @@ def details(request, id):
         'mymember': mymember,
     }
     return HttpResponse(template.render(context, request))
+
 
 def testing(request):
     mymembers = Member.objects.all().values()
