@@ -5,12 +5,13 @@ Testing Page
 {% endblock %}
 
 {% block content%}
-<h1>Hello {{ firstname }}</h1>
+{% include 'partials/hero.html' %} <!-- partials must be within a block-->
+<h1>Hello {{ x.firstname }}</h1>
 <ol>
 {% for x in tester %}
 <li>{{ x }}</li>
 {% endfor %}
 </ol>
 
-
+{% include 'partials/footer.html' %}
 {% endblock %}
