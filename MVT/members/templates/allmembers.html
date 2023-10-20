@@ -1,17 +1,22 @@
 {% extends "master.html" %}
-
+{% block bootstrap %}{% endblock %}
 {% block title %}
 My Tennis Club - List of all members
 {% endblock %}
 
 
 {% block content %}
-<h1>Members</h1>
+<h1 class="well-lg">Members</h1>
 
-<ul>
+<ul class="list-group">
     {% for x in mymembers %}
-    <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    <li class="list-group-item"><a class="nav_link" href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    {% empty %}
+    No Members :I
     {% endfor %}
 </ul>
-<a href="/">Home</a>
+<a class="nav_link" href="/">Home</a>
+{% block footer %}{% endblock %}
 {% endblock %}
+
+
