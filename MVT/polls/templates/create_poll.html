@@ -1,14 +1,15 @@
 {% extends "master.html" %}
 
-{% block title %}New Poll{% endblock %}
+{% block title %}Create a New Poll{% endblock %}
 
 
 {% block content %}
 <form class="form-group" method="post">
     {% csrf_token %}
-    {{ form }}
+    <h3 class="text-primary">Create a New Poll</h3>
+    <h4 class="display4">Everyone will see it so make it good!</h4>
     <hr>
-    {{ form2 }}
+    {{ form }}
     <br>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
