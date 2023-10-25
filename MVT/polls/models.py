@@ -1,6 +1,7 @@
 import datetime
 from django.utils import timezone
 from django.db import models
+from django.forms import ModelForm
 
 
 class Question(models.Model):
@@ -16,7 +17,10 @@ class Question(models.Model):
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
+    choice_text1 = models.CharField(max_length=200, null=False)
+    choice_text2 = models.CharField(max_length=200, null=True)
+    choice_text3 = models.CharField(max_length=200, null=True)
+    choice_text4 = models.CharField(max_length=200, null=True)
     votes = models.IntegerField(default=0)
 
     def __str__(self):
