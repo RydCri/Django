@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+
+{% block title %}New Poll{% endblock %}
+
+
+{% block content %}
+<form class="form-group" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <hr>
+    <br>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<br>
+<a class="text-info" href="/">Back</a>
+{% endblock %}
