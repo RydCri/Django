@@ -21,6 +21,10 @@
     </fieldset>
     <input type="submit" value="Vote">
 </form>
+        <div class="row">
+            {% if not user.is_authenticated %}
+                <a href="/login" class="info">You must be logged in to vote</a>
+            {% endif %}
     </div>
     <div class="row">
 <a class="text-info" href="/polls/createChoice">Add a Choice</a>
