@@ -2,15 +2,17 @@
 {% block title %}Polls{% endblock %}
 
 {% block content %}
+{% include "auth_navbar.html" %}
 {% if latest_question_list %}
 <h4 class="header-bar">Latest Polls</h4>
 <ul class="list-group">
     {% for question in latest_question_list %}
-    <li><a style="text-decoration: none;" href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+    <li><a style="text-decoration: none;" href="{% url 'results' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
 </ul>
 {% else %}
 <p class="panel-info">No polls are available.</p>
 {% endif %}
 <a class="text-info" href="/polls/createPoll">Create a new Poll</a>
+<a class="text-info" href="/">Home</a>
 {% endblock %}
