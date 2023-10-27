@@ -7,14 +7,22 @@ All Members
 
 
 {% block content %}
+{% include "auth_navbar.html" %}
+<div class="container">
+    <div class="row">
 <h1 class="well-lg">Members</h1>
 
 <ul class="list-group">
-    {% for x in mymembers %}
-    <li class="list-group-item"><a class="nav_link" href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
-    {% empty %}
-    No Members :I
-    {% endfor %}
+                    {% for x in mymembers %}
+    <li class="list-group-item"><a class="nav_link" href="details/{{ x.id }}">{{ x.username }}</a>
+                    {% if x.is_staff %}
+        <i class="text-info">Staff</i>
+        {% endif %}</li>
+                            {% empty %}
+                            No Members :I
+                            {% endfor %}
 </ul>
+    </div>
 <a class="nav_link" href="/">Home</a>
+</div>
 {% endblock %}
