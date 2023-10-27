@@ -1,17 +1,27 @@
 {% extends "master.html" %}
-
-{% block title %}
-Login Here
-{% endblock %}
-
+{% block title %}User Login{% endblock %}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<form method="post" class="from-group">
-    {% csrf_token %}
-    {{form|crispy}}
-    <p>Don't have an account? Create one <a href="/register">here</a></p>
-    <button type="submit" class="btn btn-success">Login</button>
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Log In</legend>
+            {{ form|crispy }}
+
+</fieldset>
+<div class="form-group">
+    <button class="btn btn-outline-info" type="submit">Login</button>
+</div>
 </form>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+    </small><br>
+    <small class="text-muted">
+        <a href="/">Forgot password?</a>
+    </small>
+</div>
+</div>
 <a href="/">Back</a>
-{% endblock %}
+{% endblock content %}
