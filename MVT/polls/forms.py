@@ -1,9 +1,6 @@
-from attr.filters import exclude
 from django.forms import ModelForm
 from django.utils import timezone, dateformat
-
 from .models import Question, Choice
-from .models import models
 
 
 class QuestionForm(ModelForm):
@@ -23,7 +20,6 @@ class QuestionForm(ModelForm):
         last_question = Question.objects.order_by("-pub_date")[0]
         super(QuestionForm, self).__init__(*args, **kwargs)
         self.fields['pub_date'].initial = formatted_date
-        # self.fields['id'].initial = last_question
 
 
 class ChoiceForm(ModelForm):
