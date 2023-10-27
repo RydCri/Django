@@ -1,18 +1,21 @@
 import datetime
+
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
-from django.forms import ModelForm
 
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published")
+    user = models.ForeignKey('auth.User', on_delete=models.DO_NOTHING, null=True)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
     def __str__(self):
-        return f"{self.question_text} {self.pub_date}"
+        return f"{self.question_text} {self.pub_date} {self.user}"
 
 
 class Choice(models.Model):
