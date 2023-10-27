@@ -4,16 +4,27 @@
 
 
 {% block content %}
+{% include "auth_navbar.html" %}
+<div class="container">
+    <div class="row">
+
 <form class="form-group" method="post">
     {% csrf_token %}
     <h3 class="text-primary">Create a New Poll</h3>
     <h4 class="display4">Everyone will see it so make it good!</h4>
+    {% if not user.is_authenticated %}
+    <ul class="messages">
+        <li><p>You must be logged in to create a Poll</p></li>
+    </ul>
+    {% endif %}
     <hr>
     {{ form }}
     <br>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
-
-<br>
+    </div>
+    <div class="row">
 <a class="text-info" href="/">Back</a>
+    </div>
+    </div>
 {% endblock %}
