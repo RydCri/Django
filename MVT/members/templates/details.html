@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ mymember.firstname }} {{ mymember.lastname }}({{mymember.gender}})</h1>
+<h1>{{ mymember.username }}</h1>
+{% if mymember.is_staff %}
+<i class="text-success">Staff</i>
+{% endif %}
 
-<p>Member since: {{ mymember.joined_date }}</p>
-
+<p>Member since: {{ mymember.date_joined }}</p>
 <p>Back to <a href="/members">Members</a></p>
 <a href="/">Home</a>
 {% endblock %}
