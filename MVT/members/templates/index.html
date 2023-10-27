@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-
-
-<h1>Hello</h1>
+{% extends "master.html" %}
+{% block title %}The People's Choice{% endblock %}
+{% block content %}
+{% include "auth_navbar.html" %}
+<div class="container">
+    <div class="row">
+<h1>{% if user.is_authenticated %}
+    Welcome back {{user.username}}
+    {% else %}
+    Hello Guest
+    {% endif %}
+</h1>
 <p>This is the index page</p>
 <ul>
     <li><a href="/members">Members</a></li>
     <li><a href="/polls">Latest Polls</a></li>
 
 </ul>
-<a href="/register">Signup Today</a>
-<a href="/login">Login</a>
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
