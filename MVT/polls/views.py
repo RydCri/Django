@@ -1,4 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.http import Http404
@@ -18,9 +21,14 @@ def polls(request):
 def detail(request, question_id):
     try:
         question = Question.objects.get(pk=question_id)
+        creator = User.objects.get(pk=question.user_id).username
+        context = {
+            'question': question,
+            'creator': creator
+        }
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, "poll_detail.html", {"question": question})
+    return render(request, "poll_detail.html", context)
 
 
 def results(request, question_id):
@@ -52,9 +60,11 @@ def vote(request, question_id):
 
 
 def new_poll(request):
-    if request.method == 'POST':
+    user = request.user
+    if request.method == 'POST' and user.is_authenticated:
         formset = QuestionForm(request.POST)
         if formset.is_valid():
+            formset.cleaned_data['user_id'] = user
             formset.save(commit=False)
             formset.save()
             return HttpResponseRedirect('/polls/createChoice')
