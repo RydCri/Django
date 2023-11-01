@@ -1,14 +1,16 @@
-    <header class="navbar navbar-dark bg-dark d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+{% load static %}
+<header class="navbar navbar-dark bg-dark d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-12 col-md-auto mx-4 mb-2 mb-md-0 d-inline-flex">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
                 {% if user.is_authenticated %}
 
-            <li><a class="img-thumbnail" href="/members/details/{{ user.id }}">{{user.username}}</a><a class="btn btn-outline-primary me-2" href="{% url 'logout' %}">Log out <i class="fas fa-sign-out-alt"></i></a></li>
+            <li><a class="img-thumbnail" href="/members/details/{{ user.id }}">{{user.username}}</a><a class="btn btn-outline-primary mx-2" href="{% url 'logout' %}">Log out <i class="fas fa-sign-out-alt"></i></a></li>
             {% else %}
             <li><a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">Login</a></li>
            <li><a type="button" class="btn btn-primary me-2" href="{% url 'register' %}">Sign-up</a></li>
                                             {% endif %}
+            <li class="justify-content-end"><div><img class="m-0 p-0 img-fluid rounded-circle" height="100" width="100" src="{% static 'whatever.gif' %}" alt="..."></div></li>
         </ul>
     </header>
