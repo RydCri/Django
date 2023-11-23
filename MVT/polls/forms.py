@@ -1,12 +1,17 @@
 from django.forms import ModelForm
+from django.http import request
 from django.utils import timezone, dateformat
 from .models import Question, Choice
+from django.contrib.auth.models import User
+
+user = User
 
 
 class QuestionForm(ModelForm):
     class Meta:
         model = Question
         fields = "__all__"
+        # fields = ["question_text", "pub_date"]
         labels = {
             "question_text": "Topic",
         }
@@ -20,6 +25,7 @@ class QuestionForm(ModelForm):
         last_question = Question.objects.order_by("-pub_date")[0]
         super(QuestionForm, self).__init__(*args, **kwargs)
         self.fields['pub_date'].initial = formatted_date
+        self.fields['user'].initial = user
 
 
 class ChoiceForm(ModelForm):
