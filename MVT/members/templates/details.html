@@ -1,17 +1,21 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}
 {{ mymember.firstname}}'s Page
 {% endblock %}
 
 {% block content %}
 <div class="container">
-<h1 class="text-primary">{{ mymember.username }}</h1>
+    <div class="card">
+        <div class="row">
+<h1 class="text-primary">{{ mymember.username }}</h1><img style="height:150px;width: 150px;" class="img-circle" src="{% static 'user.png' %}" alt="user icon">
+        </div>
 {% if mymember.is_staff %}
 <i class="text-success">Staff</i>
 {% endif %}
 
 <p class="text-info">Member since: {{ mymember.date_joined }}</p>
+    </div>
 <p>Back to <a href="/members">Members</a></p>
 <a href="/">Home</a>
 </div>
